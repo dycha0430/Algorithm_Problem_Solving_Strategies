@@ -33,21 +33,15 @@ int solve(int left, int right) {
 
 	ret = 0;
 	// Take a rightmost number.
-	int num = numbers[right];
-	ret = num - solve(left, right - 1);
+	ret = numbers[right] - solve(left, right - 1);
 
 	// Take a leftmost number.
-	num = numbers[left];
-	ret = max(ret, num - solve(left + 1, right));
+	ret = max(ret, numbers[left] - solve(left + 1, right));
 
 	// Erase right two numbers.
-	int num1 = numbers[right];
-	int num2 = numbers[right - 1];
 	ret = max(ret, -solve(left, right - 2));
 
 	// Erase left two numbers.
-	num1 = numbers[left];
-	num2 = numbers[left + 1];
 	ret = max(ret, -solve(left + 2, right));
 
 	return ret;
