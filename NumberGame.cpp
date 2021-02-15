@@ -3,6 +3,7 @@
 #include <algorithm>
 
 using namespace std;
+const int INIT = -100000;
 int solve(int left, int right);
 int numbers[50];
 int cache[50][50];
@@ -16,7 +17,7 @@ int main() {
 		int num;
 		for (int i = 0; i < n; ++i) {
 			cin >> numbers[i];
-			for (int j = i; j < n; ++j) cache[i][j] = -1;
+			for (int j = i; j < n; ++j) cache[i][j] = INIT;
 		}
 		
 		cout << solve(0, n - 1) << endl;
@@ -28,7 +29,7 @@ int solve(int left, int right) {
 	if (left == right) return numbers[right];
 
 	int& ret = cache[left][right];
-	if (ret != -1) return ret;
+	if (ret != INIT) return ret;
 
 	ret = 0;
 	// Take a rightmost number.
